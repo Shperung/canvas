@@ -157,22 +157,40 @@ exports.default = void 0;
 
 var c1 = function c1() {
   var canvas = document.getElementById("c2");
-  var ctx = canvas.getContext("2d"); // заливка прямокутника
+  var ctx = canvas.getContext("2d"); // Лінії
 
-  ctx.fillStyle = "green";
-  ctx.fillRect(200, 50, 150, 75);
-  ctx.fillStyle = "blue";
-  ctx.fillRect(150, 100, 100, 50); // стирання всього
-  //ctx.clearRect(0, 0, 400, 200);
-  // рект
-
+  ctx.beginPath();
   ctx.strokeStyle = "green";
   ctx.lineWidth = "4";
-  ctx.rect(50, 50, 100, 100);
+  ctx.moveTo(100, 50);
+  ctx.lineTo(150, 150);
+  ctx.lineTo(300, 50); // з останньої точки малюю іншу діч
+
+  ctx.lineCap = "square"; // добавляються крадрати
+
+  ctx.stroke(); // розриваю суцільну і роблю нову
+
+  ctx.beginPath();
+  ctx.strokeStyle = "red";
+  ctx.lineWidth = "20";
+  ctx.moveTo(150, 50);
+  ctx.lineTo(50, 100);
+  ctx.lineCap = "butt"; // по замовчуванню
+
+  ctx.lineCap = "round"; // заокруглюю краї
+
+  ctx.stroke(); // розриваю суцільну і роблю нову
+
+  ctx.beginPath();
+  ctx.strokeStyle = "orange";
+  ctx.lineWidth = "16";
+  ctx.moveTo(350, 150);
+  ctx.lineTo(350, 100);
+  ctx.lineTo(300, 100);
+  ctx.lineCap = "round"; // заокруглюю краї
+
   ctx.stroke();
-  ctx.fillStyle = "orange";
-  ctx.fill();
-}; // c1
+}; // c2
 
 
 var _default = c1;

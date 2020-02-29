@@ -5,6 +5,7 @@
         display: flex;
         flex-wrap: wrap;
         align-items: flex-start;
+        font-family: Arial;
       }
       canvas {
         border: 1px solid;
@@ -15,11 +16,26 @@
         width: 400px;
         height: 200px;
       }
+      .canvas-wrap {
+        display: flex;
+        flex-direction: column;
+      }
+      b {
+        padding-left: 8px;
+        padding-top: 8px;
+      }
     </style>
   </head>
   <body>
-    <canvas width="400" height="200" id="c2"></canvas>
-    <canvas width="400" height="200" id="c1"></canvas>
+    <div class="canvas-wrap">
+      <b>Лінії</b>
+      <canvas width="400" height="200" id="c2"></canvas>
+    </div>
+
+    <div class="canvas-wrap">
+      <b>Прямокутники</b>
+      <canvas width="400" height="200" id="c1"></canvas>
+    </div>
   </body>
   <script src="./index.js"></script>
 </html>
