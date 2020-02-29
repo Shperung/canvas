@@ -117,78 +117,74 @@ parcelRequire = (function (modules, cache, entry, globalName) {
   }
 
   return newRequire;
-})({"c1.js":[function(require,module,exports) {
-"use strict";
+})({"node_modules/parcel-bundler/src/builtins/bundle-url.js":[function(require,module,exports) {
+var bundleURL = null;
 
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = void 0;
+function getBundleURLCached() {
+  if (!bundleURL) {
+    bundleURL = getBundleURL();
+  }
 
-var c1 = function c1() {
-  var canvas = document.getElementById("c1");
-  var ctx = canvas.getContext("2d"); // заливка прямокутника
+  return bundleURL;
+}
 
-  ctx.fillStyle = "green";
-  ctx.fillRect(200, 50, 150, 75);
-  ctx.fillStyle = "blue";
-  ctx.fillRect(150, 100, 100, 50); // стирання всього
-  //ctx.clearRect(0, 0, 400, 200);
-  // рект
+function getBundleURL() {
+  // Attempt to find the URL of the current script and use that as the base URL
+  try {
+    throw new Error();
+  } catch (err) {
+    var matches = ('' + err.stack).match(/(https?|file|ftp|chrome-extension|moz-extension):\/\/[^)\n]+/g);
 
-  ctx.strokeStyle = "green";
-  ctx.lineWidth = "4";
-  ctx.rect(50, 50, 100, 100);
-  ctx.stroke();
-  ctx.fillStyle = "orange";
-  ctx.fill();
-}; // c1
+    if (matches) {
+      return getBaseURL(matches[0]);
+    }
+  }
 
+  return '/';
+}
 
-var _default = c1;
-exports.default = _default;
-},{}],"c2.js":[function(require,module,exports) {
-"use strict";
+function getBaseURL(url) {
+  return ('' + url).replace(/^((?:https?|file|ftp|chrome-extension|moz-extension):\/\/.+)\/[^/]+$/, '$1') + '/';
+}
 
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = void 0;
+exports.getBundleURL = getBundleURLCached;
+exports.getBaseURL = getBaseURL;
+},{}],"node_modules/parcel-bundler/src/builtins/css-loader.js":[function(require,module,exports) {
+var bundle = require('./bundle-url');
 
-var c1 = function c1() {
-  var canvas = document.getElementById("c2");
-  var ctx = canvas.getContext("2d"); // заливка прямокутника
+function updateLink(link) {
+  var newLink = link.cloneNode();
 
-  ctx.fillStyle = "green";
-  ctx.fillRect(200, 50, 150, 75);
-  ctx.fillStyle = "blue";
-  ctx.fillRect(150, 100, 100, 50); // стирання всього
-  //ctx.clearRect(0, 0, 400, 200);
-  // рект
+  newLink.onload = function () {
+    link.remove();
+  };
 
-  ctx.strokeStyle = "green";
-  ctx.lineWidth = "4";
-  ctx.rect(50, 50, 100, 100);
-  ctx.stroke();
-  ctx.fillStyle = "orange";
-  ctx.fill();
-}; // c1
+  newLink.href = link.href.split('?')[0] + '?' + Date.now();
+  link.parentNode.insertBefore(newLink, link.nextSibling);
+}
 
+var cssTimeout = null;
 
-var _default = c1;
-exports.default = _default;
-},{}],"index.js":[function(require,module,exports) {
-"use strict";
+function reloadCSS() {
+  if (cssTimeout) {
+    return;
+  }
 
-var _c = _interopRequireDefault(require("./c1"));
+  cssTimeout = setTimeout(function () {
+    var links = document.querySelectorAll('link[rel="stylesheet"]');
 
-var _c2 = _interopRequireDefault(require("./c2"));
+    for (var i = 0; i < links.length; i++) {
+      if (bundle.getBaseURL(links[i].href) === bundle.getBundleURL()) {
+        updateLink(links[i]);
+      }
+    }
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+    cssTimeout = null;
+  }, 50);
+}
 
-(0, _c.default)();
-(0, _c2.default)();
-},{"./c1":"c1.js","./c2":"c2.js"}],"node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+module.exports = reloadCSS;
+},{"./bundle-url":"node_modules/parcel-bundler/src/builtins/bundle-url.js"}],"node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
@@ -392,5 +388,5 @@ function hmrAcceptRun(bundle, id) {
     return true;
   }
 }
-},{}]},{},["node_modules/parcel-bundler/src/builtins/hmr-runtime.js","index.js"], null)
-//# sourceMappingURL=/canvas.e31bb0bc.js.map
+},{}]},{},["node_modules/parcel-bundler/src/builtins/hmr-runtime.js"], null)
+//# sourceMappingURL=/index.js.map
