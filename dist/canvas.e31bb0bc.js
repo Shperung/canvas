@@ -244,6 +244,78 @@ var c3 = function c3() {
 
 var _default = c3;
 exports.default = _default;
+},{}],"c4.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+var c4 = function c4() {
+  var canvas = document.getElementById("c4");
+  var ctx = canvas.getContext("2d");
+  ctx.beginPath();
+  ctx.lineWidth = "4";
+  ctx.strokeStyle = "red";
+  ctx.fillStyle = "yellow"; // x, y центр кола
+  //anticlockwise по часові
+  //ctx.arc(x, y, radius, angleStart, angleEnd, anticlockwise); angle-radian
+
+  ctx.arc(150, 100, 75, 0, 2 * Math.PI, false);
+  ctx.stroke();
+  ctx.fill();
+  ctx.beginPath();
+  ctx.lineWidth = "4";
+  ctx.strokeStyle = "green";
+  ctx.fillStyle = "pink"; // x, y центр кола
+  //anticlockwise по часові
+  //ctx.arc(x, y, radius, angleStart, angleEnd, anticlockwise); angle-radian
+
+  ctx.arc(250, 100, 45, 0, 2 * Math.PI, false);
+  ctx.stroke();
+  ctx.fill();
+}; // c4
+
+
+var _default = c4;
+exports.default = _default;
+},{}],"c5.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+var c5 = function c5() {
+  var canvas = document.getElementById("c5");
+  var ctx = canvas.getContext("2d");
+  var x = 0;
+  var y = 0;
+  var timet = null;
+  drawSin();
+
+  function drawSin() {
+    y = Math.sin(x); //y = Math.atan(x);
+    // поки в рамках канваса
+
+    if (x >= 400) {
+      x = 0;
+    } else {
+      // рекурсивно добавляю діч
+      x += 0.02;
+    }
+
+    ctx.fillRect(5 * x, 50 + 25 * y, 2, 2);
+    ctx.fillRect(5 * x, 150 + x * y, 2, 2);
+    timet = setTimeout(drawSin, 2);
+  }
+}; // c5
+
+
+var _default = c5;
+exports.default = _default;
 },{}],"index.js":[function(require,module,exports) {
 "use strict";
 
@@ -253,12 +325,18 @@ var _c2 = _interopRequireDefault(require("./c2"));
 
 var _c3 = _interopRequireDefault(require("./c3"));
 
+var _c4 = _interopRequireDefault(require("./c4"));
+
+var _c5 = _interopRequireDefault(require("./c5"));
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 (0, _c.default)();
 (0, _c2.default)();
 (0, _c3.default)();
-},{"./c1":"c1.js","./c2":"c2.js","./c3":"c3.js"}],"node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+(0, _c4.default)();
+(0, _c5.default)();
+},{"./c1":"c1.js","./c2":"c2.js","./c3":"c3.js","./c4":"c4.js","./c5":"c5.js"}],"node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
