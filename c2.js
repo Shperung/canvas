@@ -1,4 +1,4 @@
-const c1 = () => {
+const c2 = () => {
   const canvas = document.getElementById("c2");
   const ctx = canvas.getContext("2d");
 
@@ -46,4 +46,4 @@ const c1 = () => {
   ctx.fill();
 }; // c2
 
-export default c1;
+export default c2;

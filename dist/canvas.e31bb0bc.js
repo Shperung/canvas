@@ -155,7 +155,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = void 0;
 
-var c1 = function c1() {
+var c2 = function c2() {
   var canvas = document.getElementById("c2");
   var ctx = canvas.getContext("2d"); // Лінії
 
@@ -205,7 +205,23 @@ var c1 = function c1() {
 }; // c2
 
 
-var _default = c1;
+var _default = c2;
+exports.default = _default;
+},{}],"c3.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+var c3 = function c3() {
+  var canvas = document.getElementById("c3");
+  var ctx = canvas.getContext("2d");
+}; // c3
+
+
+var _default = c3;
 exports.default = _default;
 },{}],"index.js":[function(require,module,exports) {
 "use strict";
@@ -214,11 +230,14 @@ var _c = _interopRequireDefault(require("./c1"));
 
 var _c2 = _interopRequireDefault(require("./c2"));
 
+var _c3 = _interopRequireDefault(require("./c3"));
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 (0, _c.default)();
 (0, _c2.default)();
-},{"./c1":"c1.js","./c2":"c2.js"}],"node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+(0, _c3.default)();
+},{"./c1":"c1.js","./c2":"c2.js","./c3":"c3.js"}],"node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
