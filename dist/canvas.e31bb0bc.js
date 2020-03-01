@@ -218,6 +218,19 @@ exports.default = void 0;
 var c3 = function c3() {
   var canvas = document.getElementById("c3");
   var ctx = canvas.getContext("2d");
+
+  canvas.onpointerdown = function () {
+    canvas.onmousemove = function (event) {
+      var x = event.offsetX;
+      var y = event.offsetY; // малюю прамокутник
+
+      ctx.fillRect(x, y, 10, 10);
+    };
+
+    canvas.onpointerup = function () {
+      return canvas.onmousemove = null;
+    };
+  };
 }; // c3
 
 
