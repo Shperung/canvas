@@ -117,148 +117,79 @@ parcelRequire = (function (modules, cache, entry, globalName) {
   }
 
   return newRequire;
-})({"c1.js":[function(require,module,exports) {
-"use strict";
+})({"node_modules/parcel-bundler/src/builtins/bundle-url.js":[function(require,module,exports) {
+var bundleURL = null;
 
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = void 0;
+function getBundleURLCached() {
+  if (!bundleURL) {
+    bundleURL = getBundleURL();
+  }
 
-var c1 = function c1() {
-  var canvas = document.getElementById("c1");
-  var ctx = canvas.getContext("2d"); // заливка прямокутника
+  return bundleURL;
+}
 
-  ctx.fillStyle = "green";
-  ctx.fillRect(200, 50, 150, 75);
-  ctx.fillStyle = "blue";
-  ctx.fillRect(150, 100, 100, 50); // стирання всього
-  //ctx.clearRect(0, 0, 400, 200);
-  // рект
+function getBundleURL() {
+  // Attempt to find the URL of the current script and use that as the base URL
+  try {
+    throw new Error();
+  } catch (err) {
+    var matches = ('' + err.stack).match(/(https?|file|ftp|chrome-extension|moz-extension):\/\/[^)\n]+/g);
 
-  ctx.strokeStyle = "green";
-  ctx.lineWidth = "4";
-  ctx.rect(50, 50, 100, 100);
-  ctx.stroke();
-  ctx.fillStyle = "orange";
-  ctx.fill();
-}; // c1
+    if (matches) {
+      return getBaseURL(matches[0]);
+    }
+  }
 
+  return '/';
+}
 
-var _default = c1;
-exports.default = _default;
-},{}],"c2.js":[function(require,module,exports) {
-"use strict";
+function getBaseURL(url) {
+  return ('' + url).replace(/^((?:https?|file|ftp|chrome-extension|moz-extension):\/\/.+)\/[^/]+$/, '$1') + '/';
+}
 
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = void 0;
+exports.getBundleURL = getBundleURLCached;
+exports.getBaseURL = getBaseURL;
+},{}],"node_modules/parcel-bundler/src/builtins/css-loader.js":[function(require,module,exports) {
+var bundle = require('./bundle-url');
 
-var c2 = function c2() {
-  var canvas = document.getElementById("c2");
-  var ctx = canvas.getContext("2d"); // Лінії
+function updateLink(link) {
+  var newLink = link.cloneNode();
 
-  ctx.beginPath();
-  ctx.strokeStyle = "green";
-  ctx.lineWidth = "4";
-  ctx.moveTo(100, 50);
-  ctx.lineTo(150, 150);
-  ctx.lineTo(150, 50); // з останньої точки малюю іншу діч
-
-  ctx.lineCap = "square"; // добавляються крадрати
-
-  ctx.stroke(); // розриваю суцільну і роблю нову
-
-  ctx.beginPath();
-  ctx.strokeStyle = "red";
-  ctx.lineWidth = "20";
-  ctx.moveTo(150, 50);
-  ctx.lineTo(50, 100);
-  ctx.lineCap = "butt"; // по замовчуванню
-
-  ctx.lineCap = "round"; // заокруглюю краї
-
-  ctx.stroke(); // розриваю суцільну і роблю нову
-
-  ctx.beginPath();
-  ctx.strokeStyle = "orange";
-  ctx.lineWidth = "16";
-  ctx.moveTo(250, 150);
-  ctx.lineTo(250, 100);
-  ctx.lineTo(200, 100);
-  ctx.lineCap = "round"; // заокруглюю краї
-
-  ctx.stroke(); // трикутник
-
-  ctx.beginPath();
-  ctx.strokeStyle = "blue";
-  ctx.lineWidth = "3";
-  ctx.moveTo(300, 150);
-  ctx.lineTo(350, 50);
-  ctx.lineTo(400, 150); // ctx.lineTo(300, 150); // або лінія яка повертає то стартового або закриваю, командою внизу
-
-  ctx.closePath();
-  ctx.fillStyle = "yellow";
-  ctx.stroke();
-  ctx.fill();
-}; // c2
-
-
-var _default = c2;
-exports.default = _default;
-},{}],"c3.js":[function(require,module,exports) {
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = void 0;
-
-var c3 = function c3() {
-  var canvas = document.getElementById("c3");
-  var colorInput = document.getElementById("input-color-c3");
-  var ctx = canvas.getContext("2d");
-  var fillColor = "green";
-
-  colorInput.oninput = function () {
-    fillColor = this.value;
+  newLink.onload = function () {
+    link.remove();
   };
 
-  canvas.onpointerdown = function () {
-    canvas.onmousemove = function (event) {
-      ctx.fillStyle = fillColor;
-      var x = event.offsetX;
-      var y = event.offsetY; // малюю прамокутник
+  newLink.href = link.href.split('?')[0] + '?' + Date.now();
+  link.parentNode.insertBefore(newLink, link.nextSibling);
+}
 
-      ctx.fillRect(x, y, 10, 10);
-      ctx.fill();
-    };
+var cssTimeout = null;
 
-    canvas.onpointerup = function () {
-      return canvas.onmousemove = null;
-    };
-  };
-}; // c3
+function reloadCSS() {
+  if (cssTimeout) {
+    return;
+  }
 
+  cssTimeout = setTimeout(function () {
+    var links = document.querySelectorAll('link[rel="stylesheet"]');
 
-var _default = c3;
-exports.default = _default;
-},{}],"index.js":[function(require,module,exports) {
-"use strict";
+    for (var i = 0; i < links.length; i++) {
+      if (bundle.getBaseURL(links[i].href) === bundle.getBundleURL()) {
+        updateLink(links[i]);
+      }
+    }
 
-var _c = _interopRequireDefault(require("./c1"));
+    cssTimeout = null;
+  }, 50);
+}
 
-var _c2 = _interopRequireDefault(require("./c2"));
+module.exports = reloadCSS;
+},{"./bundle-url":"node_modules/parcel-bundler/src/builtins/bundle-url.js"}],"index.css":[function(require,module,exports) {
+var reloadCSS = require('_css_loader');
 
-var _c3 = _interopRequireDefault(require("./c3"));
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-(0, _c.default)();
-(0, _c2.default)();
-(0, _c3.default)();
-},{"./c1":"c1.js","./c2":"c2.js","./c3":"c3.js"}],"node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+module.hot.dispose(reloadCSS);
+module.hot.accept(reloadCSS);
+},{"./grid.png":[["grid.27bd0a34.png","grid.png"],"grid.png"],"_css_loader":"node_modules/parcel-bundler/src/builtins/css-loader.js"}],"node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
@@ -462,5 +393,5 @@ function hmrAcceptRun(bundle, id) {
     return true;
   }
 }
-},{}]},{},["node_modules/parcel-bundler/src/builtins/hmr-runtime.js","index.js"], null)
-//# sourceMappingURL=/canvas.e31bb0bc.js.map
+},{}]},{},["node_modules/parcel-bundler/src/builtins/hmr-runtime.js"], null)
+//# sourceMappingURL=/canvas.9ad09f98.js.map

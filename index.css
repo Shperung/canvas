@@ -1,0 +1,23 @@
+body {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  font-family: Arial;
+}
+canvas {
+  border: 1px solid;
+  margin: 8px;
+  background-image: url(grid.png);
+}
+#c1 {
+  width: 400px;
+  height: 200px;
+}
+.canvas-wrap {
+  display: flex;
+  flex-direction: column;
+}
+b {
+  padding-left: 8px;
+  padding-top: 8px;
+}
