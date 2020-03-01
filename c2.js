@@ -8,7 +8,7 @@ const c1 = () => {
   ctx.lineWidth = "4";
   ctx.moveTo(100, 50);
   ctx.lineTo(150, 150);
-  ctx.lineTo(300, 50); // з останньої точки малюю іншу діч
+  ctx.lineTo(150, 50); // з останньої точки малюю іншу діч
   ctx.lineCap = "square"; // добавляються крадрати
   ctx.stroke();
 
@@ -26,11 +26,24 @@ const c1 = () => {
   ctx.beginPath();
   ctx.strokeStyle = "orange";
   ctx.lineWidth = "16";
-  ctx.moveTo(350, 150);
-  ctx.lineTo(350, 100);
-  ctx.lineTo(300, 100);
+  ctx.moveTo(250, 150);
+  ctx.lineTo(250, 100);
+  ctx.lineTo(200, 100);
   ctx.lineCap = "round"; // заокруглюю краї
   ctx.stroke();
+
+  // трикутник
+  ctx.beginPath();
+  ctx.strokeStyle = "blue";
+  ctx.lineWidth = "3";
+  ctx.moveTo(300, 150);
+  ctx.lineTo(350, 50);
+  ctx.lineTo(400, 150);
+  // ctx.lineTo(300, 150); // або лінія яка повертає то стартового або закриваю, командою внизу
+  ctx.closePath();
+  ctx.fillStyle = "yellow";
+  ctx.stroke();
+  ctx.fill();
 }; // c2
 
 export default c1;
