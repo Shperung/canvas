@@ -297,7 +297,10 @@ var c5 = function c5() {
   drawSin();
 
   function drawSin() {
-    y = Math.sin(x); //y = Math.atan(x);
+    y = Math.sin(x); //y = Math.cos(x);
+    //y = -x * x;
+    //y = Math.tan(x);
+    //y = Math.atan(x);
     // поки в рамках канваса
 
     if (x >= 400) {
@@ -316,6 +319,74 @@ var c5 = function c5() {
 
 var _default = c5;
 exports.default = _default;
+},{}],"c6.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+var c6 = function c6() {
+  var canvas = document.getElementById("c6");
+  var ctx = canvas.getContext("2d");
+  ctx.fillStyle = "red";
+  ctx.strokeStyle = "green";
+  ctx.moveTo(200, 50);
+  ctx.quadraticCurveTo(150, 0, 110, 50);
+  ctx.quadraticCurveTo(50, 150, 200, 200);
+  ctx.quadraticCurveTo(350, 150, 290, 50);
+  ctx.quadraticCurveTo(250, 0, 200, 50);
+  ctx.stroke();
+  ctx.fill();
+}; // c6
+
+
+var _default = c6;
+exports.default = _default;
+},{}],"c7.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+var c7 = function c7() {
+  var canvas = document.getElementById("c7");
+  var ctx = canvas.getContext("2d");
+  ctx.fillStyle = "green";
+  ctx.strokeStyle = "black"; //   ctx.moveTo(200, 50);
+  //   ctx.quadraticCurveTo(150, 0, 110, 50);
+  //   ctx.quadraticCurveTo(50, 150, 200, 200);
+  //   ctx.quadraticCurveTo(350, 150, 290, 50);
+  //   ctx.quadraticCurveTo(250, 0, 200, 50);
+  //   ctx.stroke();
+  //   ctx.fill();
+
+  canvas.onmousemove = function (event) {
+    var x = event.offsetX;
+    var y = event.offsetY;
+    ctx.clearRect(0, 0, 400, 200);
+    ctx.beginPath();
+    ctx.moveTo(200, 50);
+    ctx.quadraticCurveTo(x, y, 200, 150);
+    ctx.stroke();
+    ctx.fill();
+    ctx.closePath();
+    ctx.beginPath();
+    ctx.strokeStyle = "red";
+    ctx.lineWidth = 1;
+    ctx.moveTo(200, 50);
+    ctx.lineTo(x, y);
+    ctx.lineTo(200, 150);
+    ctx.stroke();
+  };
+}; // c7
+
+
+var _default = c7;
+exports.default = _default;
 },{}],"index.js":[function(require,module,exports) {
 "use strict";
 
@@ -329,6 +400,10 @@ var _c4 = _interopRequireDefault(require("./c4"));
 
 var _c5 = _interopRequireDefault(require("./c5"));
 
+var _c6 = _interopRequireDefault(require("./c6"));
+
+var _c7 = _interopRequireDefault(require("./c7"));
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 (0, _c.default)();
@@ -336,7 +411,9 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 (0, _c3.default)();
 (0, _c4.default)();
 (0, _c5.default)();
-},{"./c1":"c1.js","./c2":"c2.js","./c3":"c3.js","./c4":"c4.js","./c5":"c5.js"}],"node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+(0, _c6.default)();
+(0, _c7.default)();
+},{"./c1":"c1.js","./c2":"c2.js","./c3":"c3.js","./c4":"c4.js","./c5":"c5.js","./c6":"c6.js","./c7":"c7.js"}],"node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
@@ -364,7 +441,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "65143" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "50945" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

@@ -9,6 +9,9 @@ const c5 = () => {
 
   function drawSin() {
     y = Math.sin(x);
+    //y = Math.cos(x);
+    //y = -x * x;
+    //y = Math.tan(x);
     //y = Math.atan(x);
     // поки в рамках канваса
     if (x >= 400) {
