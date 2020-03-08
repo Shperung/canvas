@@ -219,20 +219,30 @@ var c3 = function c3() {
   var canvas = document.getElementById("c3");
   var colorInput = document.getElementById("input-color-c3");
   var ctx = canvas.getContext("2d");
-  var fillColor = "green";
+  var fillColor = "black";
 
   colorInput.oninput = function () {
     fillColor = this.value;
   };
 
+  ctx.lineWidth = 5 * 2;
+
   canvas.onpointerdown = function () {
+    ctx.beginPath();
+
     canvas.onmousemove = function (event) {
       ctx.fillStyle = fillColor;
+      ctx.strokeStyle = fillColor;
       var x = event.offsetX;
-      var y = event.offsetY; // малюю прамокутник
+      var y = event.offsetY; // малюю лінію
 
-      ctx.fillRect(x, y, 10, 10);
+      ctx.lineTo(x, y);
+      ctx.stroke();
+      ctx.beginPath();
+      ctx.arc(x, y, 5, 0, Math.PI * 2);
       ctx.fill();
+      ctx.beginPath();
+      ctx.moveTo(x, y);
     };
 
     canvas.onpointerup = function () {
