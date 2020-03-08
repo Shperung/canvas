@@ -420,6 +420,29 @@ var c8 = function c8() {
 
 var _default = c8;
 exports.default = _default;
+},{}],"c9.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+var c9 = function c9() {
+  var canvas = document.getElementById("c9");
+  var ctx = canvas.getContext("2d");
+  var grad = ctx.createLinearGradient(0, 0, 500, 0);
+  grad.addColorStop(0, "magenta");
+  grad.addColorStop(0.5, "blue");
+  grad.addColorStop(1, "green");
+  ctx.fillStyle = grad;
+  ctx.font = "bold 40px Arial";
+  ctx.fillText("Hello world!", 55, 90);
+}; // c9
+
+
+var _default = c9;
+exports.default = _default;
 },{}],"index.js":[function(require,module,exports) {
 "use strict";
 
@@ -439,6 +462,8 @@ var _c7 = _interopRequireDefault(require("./c7"));
 
 var _c8 = _interopRequireDefault(require("./c8"));
 
+var _c9 = _interopRequireDefault(require("./c9"));
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 (0, _c.default)();
@@ -449,7 +474,8 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 (0, _c6.default)();
 (0, _c7.default)();
 (0, _c8.default)();
-},{"./c1":"c1.js","./c2":"c2.js","./c3":"c3.js","./c4":"c4.js","./c5":"c5.js","./c6":"c6.js","./c7":"c7.js","./c8":"c8.js"}],"node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+(0, _c9.default)();
+},{"./c1":"c1.js","./c2":"c2.js","./c3":"c3.js","./c4":"c4.js","./c5":"c5.js","./c6":"c6.js","./c7":"c7.js","./c8":"c8.js","./c9":"c9.js"}],"node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
