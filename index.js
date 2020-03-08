@@ -5,6 +5,7 @@ import c4 from "./c4";
 import c5 from "./c5";
 import c6 from "./c6";
 import c7 from "./c7";
+import c8 from "./c8";
 
 c1();
 c2();
@@ -13,3 +14,4 @@ c4();
 c5();
 c6();
 c7();
+c8();
