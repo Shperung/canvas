@@ -8,7 +8,7 @@ const c3 = () => {
     fillColor = this.value;
   };
 
-  ctx.lineWidth = 5 * 2;
+  ctx.lineWidth = 6 * 2;
 
   canvas.onpointerdown = () => {
     ctx.beginPath();
@@ -21,7 +21,7 @@ const c3 = () => {
       ctx.lineTo(x, y);
       ctx.stroke();
       ctx.beginPath();
-      ctx.arc(x, y, 5, 0, Math.PI * 2);
+      ctx.arc(x, y, 6, 0, Math.PI * 2);
       ctx.fill();
       ctx.beginPath();
       ctx.moveTo(x, y);

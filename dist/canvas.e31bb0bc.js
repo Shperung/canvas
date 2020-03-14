@@ -225,7 +225,7 @@ var c3 = function c3() {
     fillColor = this.value;
   };
 
-  ctx.lineWidth = 5 * 2;
+  ctx.lineWidth = 6 * 2;
 
   canvas.onpointerdown = function () {
     ctx.beginPath();
@@ -239,7 +239,7 @@ var c3 = function c3() {
       ctx.lineTo(x, y);
       ctx.stroke();
       ctx.beginPath();
-      ctx.arc(x, y, 5, 0, Math.PI * 2);
+      ctx.arc(x, y, 6, 0, Math.PI * 2);
       ctx.fill();
       ctx.beginPath();
       ctx.moveTo(x, y);
@@ -475,7 +475,7 @@ var c10 = function c10() {
     y = -x * x;
     ctx.fillRect(200 + 30 * x, 150 + 30 * y, 8, 8);
     ctx.fillRect(200 + 30 * -x, 150 + 30 * y, 8, 8);
-    x += 0.02;
+    x += 0.005;
     ctx.fill();
     ctx.stroke();
     requestAnimation = requestAnimationFrame(draw);
@@ -486,6 +486,53 @@ var c10 = function c10() {
 
 
 var _default = c10;
+exports.default = _default;
+},{}],"c11.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+var c11 = function c11() {
+  var canvas = document.getElementById("c11");
+  var ctx = canvas.getContext("2d");
+  var requestAnimation = null;
+  var intreval = null;
+  var duration = 6000;
+  var start = Date.now();
+  ctx.strokeStyle = "blue";
+  ctx.fillStyle = "blue";
+  intreval = setInterval(function () {
+    var timePassed = Date.now() - start;
+
+    if (timePassed < duration * 3) {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      var timeDivide = timePassed / duration;
+      var x1 = timeDivide * 400;
+      var x2 = Math.pow(timeDivide, 2) * 400;
+      var x3 = Math.pow(timeDivide, 3) * 400;
+      var x4 = (1 - Math.sin(Math.acos(timeDivide))) * 400;
+      var x5 = (1 - Math.sin((1 - timeDivide) * Math.PI / 2)) * 400;
+      var x6 = (1 - Math.sin((1.3 - timeDivide) * Math.PI / 2)) * 400;
+      ctx.fillRect(x1, 25 - 4, 8, 8);
+      ctx.fillRect(x2, 50 - 4, 8, 8);
+      ctx.fillRect(x3, 75 - 4, 8, 8);
+      ctx.fillRect(x4, 100 - 4, 8, 8);
+      ctx.fillRect(x5, 125 - 4, 8, 8);
+      ctx.fillRect(x6, 150 - 4, 8, 8);
+      ctx.fill();
+      ctx.stroke();
+    } else {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      clearInterval(intreval);
+    }
+  }, 16);
+}; // c11
+
+
+var _default = c11;
 exports.default = _default;
 },{}],"index.js":[function(require,module,exports) {
 "use strict";
@@ -510,6 +557,8 @@ var _c9 = _interopRequireDefault(require("./c9"));
 
 var _c10 = _interopRequireDefault(require("./c10"));
 
+var _c11 = _interopRequireDefault(require("./c11"));
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 (0, _c.default)();
@@ -522,7 +571,8 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 (0, _c8.default)();
 (0, _c9.default)();
 (0, _c10.default)();
-},{"./c1":"c1.js","./c2":"c2.js","./c3":"c3.js","./c4":"c4.js","./c5":"c5.js","./c6":"c6.js","./c7":"c7.js","./c8":"c8.js","./c9":"c9.js","./c10":"c10.js"}],"node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+(0, _c11.default)();
+},{"./c1":"c1.js","./c2":"c2.js","./c3":"c3.js","./c4":"c4.js","./c5":"c5.js","./c6":"c6.js","./c7":"c7.js","./c8":"c8.js","./c9":"c9.js","./c10":"c10.js","./c11":"c11.js"}],"node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
@@ -550,7 +600,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "54684" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "61873" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

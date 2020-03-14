@@ -13,7 +13,7 @@ const c10 = () => {
     y = -x * x;
     ctx.fillRect(200 + 30 * x, 150 + 30 * y, 8, 8);
     ctx.fillRect(200 + 30 * -x, 150 + 30 * y, 8, 8);
-    x += 0.02;
+    x += 0.005;
 
     ctx.fill();
     ctx.stroke();
