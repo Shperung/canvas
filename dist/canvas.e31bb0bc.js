@@ -544,19 +544,22 @@ exports.default = void 0;
 
 var c12 = function c12() {
   var canvas = document.getElementById("c12");
-  var ctx = canvas.getContext("2d");
-  var ctxW = 400,
-      ctxH = 200;
-  var lines = new Array(),
-      pressed = false;
+  var ctx = canvas.getContext("2d"); // розміри канваса
+
+  var canvasWidth = 400;
+  var canvasHidth = 200; // ініт ліній
+
+  var lines = new Array(); // стан нахжатості
+
+  var pressed = false;
   var ball = {
     x: -100,
     y: 0,
     radius: 20,
     speed: 2,
     color: "#F00",
+    // індекс точок масива до якого рухається
     moveTo: 0,
-    //Индекс точек массива к которому двигаться
     draw: function draw() {
       if (pressed) return;
       ctx.fillStyle = this.color;
@@ -623,7 +626,7 @@ var c12 = function c12() {
 
   function handler() {
     ctx.fillStyle = "#EEE";
-    ctx.fillRect(0, 0, ctxW, ctxH);
+    ctx.fillRect(0, 0, canvasWidth, canvasHidth);
 
     if (lines.length > 1) {
       ctx.strokeStyle = "#444";
