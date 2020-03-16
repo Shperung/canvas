@@ -572,13 +572,9 @@ var c12 = function c12() {
       ctx.fill();
     },
     changePosition: function changePosition() {
-      console.log('lines', lines); // якщо точок менще 2 то стопаю
+      // якщо точок менще 2 то стопаю коло
+      if (lines.length < 2 || pressed) return; // якщо дойщов до кінця перескакую назад  
 
-      if (lines.length < 2 || pressed) {
-        return;
-      }
-
-      ;
       if (this.moveTo >= lines.length) this.moveTo = 0;
 
       if (this.moveTo == 0) {
@@ -586,7 +582,7 @@ var c12 = function c12() {
         this.y = lines[0].y;
         this.moveTo++;
       } else {
-        //Вернет угол в радианах между координатами центра круга и следующей точкой на линии
+        // вугол в радіанах між координатами ценрта круга і наступної точки ан лінії
         var angle = Math.atan2(lines[this.moveTo].x - this.x, lines[this.moveTo].y - this.y);
 
         if (Math.abs(this.x - lines[this.moveTo].x) < this.speed && Math.abs(this.y - lines[this.moveTo].y) < this.speed) {
@@ -632,7 +628,12 @@ var c12 = function c12() {
       y: y
     });
     pressed = false;
-  }
+  } // взаємодія з канвасом
+
+
+  canvas.addEventListener("mousedown", EVM_down);
+  canvas.addEventListener("mouseup", EVM_up);
+  canvas.addEventListener("mousemove", EVM_move);
 
   function handler() {
     ctx.fillStyle = "transparent";
@@ -654,11 +655,8 @@ var c12 = function c12() {
     ball.draw();
     ball.changePosition();
     setTimeout(handler, 1000 / 60);
-  }
+  } // запуск хендлера
 
-  canvas.addEventListener("mousedown", EVM_down);
-  canvas.addEventListener("mouseup", EVM_up);
-  canvas.addEventListener("mousemove", EVM_move); // запуск хендлера
 
   handler();
 }; // c12
