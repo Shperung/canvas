@@ -551,25 +551,34 @@ var c12 = function c12() {
 
   var lines = new Array(); // стан нахжатості
 
-  var pressed = false;
+  var pressed = false; // колір кружка
+
+  var color = 'green';
   var ball = {
-    x: -100,
+    // по замовчуванню x, y сховані десь зверху
+    x: -10,
     y: 0,
-    radius: 20,
-    speed: 2,
-    color: "#F00",
+    // швидкість 1, 2, 3
+    speed: 1,
     // індекс точок масива до якого рухається
     moveTo: 0,
+    // малювання кружка
     draw: function draw() {
       if (pressed) return;
-      ctx.fillStyle = this.color;
+      ctx.fillStyle = color;
       ctx.beginPath();
-      ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+      ctx.arc(this.x, this.y, 10, 0, Math.PI * 2);
       ctx.closePath();
       ctx.fill();
     },
-    handler: function handler() {
-      if (lines.length < 2 || pressed) return;
+    changePosition: function changePosition() {
+      console.log('lines', lines); // якщо точок менще 2 то стопаю
+
+      if (lines.length < 2 || pressed) {
+        return;
+      }
+
+      ;
       if (this.moveTo >= lines.length) this.moveTo = 0;
 
       if (this.moveTo == 0) {
@@ -577,7 +586,8 @@ var c12 = function c12() {
         this.y = lines[0].y;
         this.moveTo++;
       } else {
-        var angle = Math.atan2(lines[this.moveTo].x - this.x, lines[this.moveTo].y - this.y); //Вернет угол в радианах между координатами центра круга и следующей точкой на линии
+        //Вернет угол в радианах между координатами центра круга и следующей точкой на линии
+        var angle = Math.atan2(lines[this.moveTo].x - this.x, lines[this.moveTo].y - this.y);
 
         if (Math.abs(this.x - lines[this.moveTo].x) < this.speed && Math.abs(this.y - lines[this.moveTo].y) < this.speed) {
           this.x = lines[this.moveTo].x;
@@ -625,11 +635,11 @@ var c12 = function c12() {
   }
 
   function handler() {
-    ctx.fillStyle = "#EEE";
+    ctx.fillStyle = "transparent";
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
     ctx.fillRect(0, 0, canvasWidth, canvasHidth);
 
     if (lines.length > 1) {
-      ctx.strokeStyle = "#444";
       ctx.beginPath();
       ctx.moveTo(lines[0].x, lines[0].y);
 
@@ -642,13 +652,14 @@ var c12 = function c12() {
     }
 
     ball.draw();
-    ball.handler();
+    ball.changePosition();
     setTimeout(handler, 1000 / 60);
   }
 
   canvas.addEventListener("mousedown", EVM_down);
   canvas.addEventListener("mouseup", EVM_up);
-  canvas.addEventListener("mousemove", EVM_move);
+  canvas.addEventListener("mousemove", EVM_move); // запуск хендлера
+
   handler();
 }; // c12
 
