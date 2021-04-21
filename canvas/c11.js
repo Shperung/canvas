@@ -16,7 +16,7 @@ const c11 = () => {
 
     //https://github.com/finnursig/VideoScroller/blob/master/src/EasingFunctions.js
 
-    if (timePassed < duration * 3) {
+    if (timePassed < duration) {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
       let t = timePassed / duration;
       let t5 = timePassed / duration;
@@ -28,11 +28,11 @@ const c11 = () => {
       // тройне прискорення з нульової швидкості
       let x3 = Math.pow(t, 3) * 400;
       // уповільнення до нульової швидкості
-      let x4 = (t*(2-t)) * 400;
+      let x4 = t * (2 - t) * 400;
       //прискорення до півдороги, потім уповільнення
-      let x5 = (t5<.5 ? 2*t5*t5 : -1+(4-2*t5)*t5) * 400
+      let x5 = (t5 < 0.5 ? 2 * t5 * t5 : -1 + (4 - 2 * t5) * t5) * 400;
       // уповільнення до нульової швидкості
-      const x6 = ((--t6)*t6*t6+1) * 400
+      const x6 = (--t6 * t6 * t6 + 1) * 400;
 
       // рух по різних функціях
       //const x4 = (1 - Math.sin(Math.acos(t))) * 400;

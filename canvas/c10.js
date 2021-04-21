@@ -9,7 +9,7 @@ const c10 = () => {
   ctx.fillStyle = "red";
 
   function draw() {
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    //ctx.clearRect(0, 0, canvas.width, canvas.height);
     y = -x * x;
     ctx.fillRect(200 + 30 * x, 150 + 30 * y, 8, 8);
     ctx.fillRect(200 + 30 * -x, 150 + 30 * y, 8, 8);

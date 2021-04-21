@@ -1,0 +1,25 @@
+import c1 from "./canvas/c1";
+import c2 from "./canvas/c2";
+import c3 from "./canvas/c3";
+import c4 from "./canvas/c4";
+import c5 from "./canvas/c5";
+import c6 from "./canvas/c6";
+import c7 from "./canvas/c7";
+import c8 from "./canvas/c8";
+import c9 from "./canvas/c9";
+import c10 from "./canvas/c10";
+import c11 from "./canvas/c11";
+import c12 from "./canvas/c12";
+
+c1();
+c2();
+c3();
+c4();
+c5();
+c6();
+c7();
+c8();
+c9();
+c10();
+c11();
+c12();
