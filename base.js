@@ -8,8 +8,10 @@ function urlGenerator(domain) {
 }
 const comUrl = urlGenerator('com') // com замкнута
 const netUrl = urlGenerator('net') // net замкнута
-console.log("comUrl('google')", comUrl('google'));
-console.log("netUrl('google')", netUrl('google'));
+console.log("https://google.com", comUrl('google'));
+console.log("https://google.net", netUrl('google'));
+
+console.log(urlGenerator('biz')('apple')) //https://apple.biz
 
 
 console.log('------------------------------'); console.log('');console.log('');
