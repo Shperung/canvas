@@ -3,6 +3,7 @@ body {
   flex-wrap: wrap;
   align-items: flex-start;
   font-family: Arial;
+  background-color: #1a1a1a;
 }
 
 canvas {
