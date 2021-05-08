@@ -1,5 +1,3 @@
-node_modules
-.cache
 # OSX
 #
 .DS_Store
@@ -60,18 +58,8 @@ buck-out/
 # CocoaPods
 /ios/Pods/
 
-
-/dist/*.js
-/dist/*.svg
-/dist/*.png
-/dist/*.webp
-/dist/*.woff
-/dist/*.woff2
-/dist/*.jpg
-/dist/*.jpeg
-/dist/*.map
-/dist/*.css
-/dist/*.html
+.cache/
+dist/
 /dist/api
 /prod
 /logs
