@@ -1,4 +1,4 @@
-console.groupCollapsed('ЗАМИКАННЯ');
+console.groupCollapsed('ЗАМИКАННЯ closure');
 // https://www.youtube.com/watch?v=L2PSRa2JM9A
 console.log(
   'Ми зробили функцію - вона виконалась і змінні всередині здохли',
@@ -67,6 +67,32 @@ const cat = {
 
 const catPerson = person.logInfo.bind(cat);
 catPerson(); // Murzik
+
+console.groupEnd();
+console.log('------------------------------');
+
+console.group('CALL. APPLY');
+// https://www.youtube.com/watch?v=L2PSRa2JM9A
+
+function testCall(arg0, arg1) {
+  console.log(
+    'testCall.call() - відразу викликало функцію - з передвним контекстом і параметрами',
+    this,
+    arg0,
+    arg1
+  );
+}
+function testApply(arg0, arg1) {
+  console.log(
+    'testApply.apply() - відразу викликало функцію з передвним контекстом і [параметрами через масив]',
+    this,
+    arg0,
+    arg1
+  );
+}
+
+testCall.call({a: 1}, 1, 2);
+testApply.apply({a: 1}, [1, 2]);
 
 console.groupEnd();
 console.log('------------------------------');
