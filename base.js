@@ -33,7 +33,7 @@ console.log('useConunter2', useConunter());
 console.groupEnd();
 console.log('------------------------------');
 
-console.group('КОНТЕКСТ');
+console.groupCollapsed('КОНТЕКСТ');
 // https://www.youtube.com/watch?v=L2PSRa2JM9A
 console.log(
   'кожна функція це обєкт - і має 3 методи call, applay, bind Якщо звернутись через точку'
@@ -71,7 +71,7 @@ catPerson(); // Murzik
 console.groupEnd();
 console.log('------------------------------');
 
-console.group('CALL. APPLY');
+console.groupCollapsed('CALL. APPLY');
 // https://www.youtube.com/watch?v=L2PSRa2JM9A
 
 function testCall(arg0, arg1) {
@@ -93,6 +93,51 @@ function testApply(arg0, arg1) {
 
 testCall.call({a: 1}, 1, 2);
 testApply.apply({a: 1}, [1, 2]);
+
+console.groupEnd();
+console.log('------------------------------');
+
+console.group('__proto__');
+console.log('У любго обєкта є  __proto__');
+console.log('__proto__ це обєкт');
+let obj = {};
+console.log('%c ||||| obj.__proto__', 'color:yellowgreen', obj.__proto__);
+let arr = [];
+console.log('%c ||||| arr.__proto__', 'color:yellowgreen', arr.__proto__);
+let promice = new Promise(() => {});
+console.log(
+  '%c ||||| promice.__proto__',
+  'color:yellowgreen',
+  promice.__proto__
+);
+
+class CTest {}
+let klass = new CTest();
+console.log('%c ||||| klass.__proto__', 'color:yellowgreen', klass.__proto__);
+
+let obj1 = {},
+  obj2 = {};
+const isSame__proto__ = obj1.__proto__ === obj2.__proto__;
+console.log('%c ||||| isSame__proto__', 'color:yellowgreen', isSame__proto__);
+console.log('');
+console.log('prototype є у class || function');
+console.log('prototype це обєкт');
+console.log(
+  '__proto__ любого обєкта посилається на prototype класа(функції конструктора), з допомогою якого цей обєкт був свторений new Array'
+);
+console.log('%c ||||| klass.prototype', 'color:yellowgreen', klass.prototype);
+
+console.log('**');
+console.log(
+  '%c ||||| obj.prototype - нема тому що prototype є у class || function',
+  'color:yellowgreen',
+  obj.prototype
+);
+console.log(
+  '%c ||||| obj.__proto__ === Object.prototype',
+  'color:yellowgreen',
+  obj.__proto__ === Object.prototype
+);
 
 console.groupEnd();
 console.log('------------------------------');
