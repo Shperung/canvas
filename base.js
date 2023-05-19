@@ -97,7 +97,7 @@ testApply.apply({a: 1}, [1, 2]);
 console.groupEnd();
 console.log('------------------------------');
 
-console.group('__proto__');
+console.groupCollapsed('__proto__ i prototype');
 console.log('У любго обєкта є  __proto__');
 console.log('__proto__ це обєкт');
 let obj = {};
@@ -138,6 +138,73 @@ console.log(
   'color:yellowgreen',
   obj.__proto__ === Object.prototype
 );
+
+console.groupEnd();
+console.log('------------------------------');
+
+console.groupCollapsed('OBJECT');
+
+// додавання ключа
+const testObj = {
+  key0: 0,
+  key1: 1,
+};
+console.log('%c ||||| testObj', 'color:yellowgreen', testObj);
+
+const testObj1 = {
+  ...testObj,
+  key2: 2,
+};
+console.log('%c ||||| testObj1', 'color:yellowgreen', testObj1);
+
+// змінити значення
+const testObj3 = {
+  ...testObj,
+  key1: 11,
+};
+
+console.log('%c ||||| testObj3', 'color:yellowgreen', testObj3);
+
+// видалити ключ
+const {key1, ...withoutKey1} = testObj; //  withoutKey1 {key0: 0}
+console.log('%c ||||| withoutKey1', 'color:yellowgreen', withoutKey1);
+
+// пошук ключа по значенню
+const findKey0 = Object.keys(testObj).find((key) => testObj[key] === 0); // key0
+
+console.log('%c ||||| findKey0', 'color:yellowgreen', findKey0);
+
+console.groupEnd();
+console.log('------------------------------');
+
+console.group('ARRAY');
+
+const arrTest = [1, 2, 3];
+
+console.log('%c ||||| arrTest', 'color:yellowgreen', arrTest);
+
+// додати елемент
+const arrAdd1 = [...arrTest, 4];
+const arrAdd2 = arrAdd1.concat(5);
+
+console.log('%c ||||| arrAdd1', 'color:yellowgreen', arrAdd1);
+console.log('%c ||||| arrAdd2', 'color:yellowgreen', arrAdd2);
+
+// зміна в масиві
+const arrToChange = [1, 2, 3, 4, 5];
+const indexToChange = 2;
+const newValue = 10;
+
+const newArr = arrToChange.slice(); // Створення копії оригінального масиву
+newArr[indexToChange] = newValue; // Зміна елементу у новому масиві
+console.log('%c ||||| arrToChange', 'color:yellowgreen', arrToChange); // [1, 2, 3, 4, 5] (оригінальний масив залишається незмінним)
+console.log('%c ||||| newArr', 'color:yellowgreen', newArr); // [1, 2, 10, 4, 5]
+
+const arrWith = [1, 2, 3, 4, 5];
+const changeArrWith = arrWith.with(2, 6); //[1, 2, 6, 4, 5]
+
+console.log('%c ||||| arrWith', 'color:yellowgreen', arrWith);
+console.log('%c ||||| changeArrWith', 'color:yellowgreen', changeArrWith);
 
 console.groupEnd();
 console.log('------------------------------');
