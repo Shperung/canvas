@@ -206,5 +206,21 @@ const changeArrWith = arrWith.with(2, 6); //[1, 2, 6, 4, 5]
 console.log('%c ||||| arrWith', 'color:yellowgreen', arrWith);
 console.log('%c ||||| changeArrWith', 'color:yellowgreen', changeArrWith);
 
+// видалення з масиву
+const isOdd = changeArrWith.filter((item) => item % 2); // [1, 5]
+console.log('%c ||||| isOdd', 'color:yellowgreen', isOdd);
+
+// сoртування
+const sortValues = [1, 10, 21, 2];
+const sortedOldValues = [...sortValues].sort((a, b) => a - b);
+const sortedValues = sortValues.toSorted((a, b) => a - b);
+console.log('%c ||||| sortValues', 'color:yellowgreen', sortValues);
+console.log('%c ||||| sortedOldValues', 'color:yellowgreen', sortedOldValues);
+console.log('%c ||||| sortedValues', 'color:yellowgreen', sortedValues);
+
+// пошук
+const finded = sortValues.find((item) => item === 21);
+console.log('%c ||||| finded', 'color:yellowgreen', finded);
+
 console.groupEnd();
 console.log('------------------------------');
