@@ -3,7 +3,7 @@
 // const arr = [1, 1, 1, 1, 1, 1];
 const arr = [55, 44, 33, 22, 145, 173];
 
-console.log('%c ||||| arr', 'color:yellowgreen', arr);
+// console.log('%c ||||| arr', 'color:yellowgreen', arr);
 ////////////// сума елементів масиву
 let summ1 = 0;
 for (let i = 0; i < arr.length; i++) {
@@ -66,3 +66,75 @@ const max4 = arr.toSorted((a, b) => b - a)[0];
 
 const max5 = Math.max(...arr);
 // console.log('%c ||||| max5', 'color:yellowgreen', max5);
+
+// сортування в обєкті
+const users = [
+  {
+    name: 'Anna',
+    age: 20,
+  },
+  {
+    name: 'John',
+    age: 30,
+  },
+];
+
+const maxAgeUser = users.toSorted((a, b) => {
+  if (b.age < a.age) return -1;
+  if (b.age === a.age) return 0;
+  return 1;
+});
+
+const maxAgeUser2 = users.toSorted((a, b) => b.age - a.age);
+// console.log('%c ||||| maxAgeUser', 'color:yellowgreen', maxAgeUser);
+// console.log('%c ||||| maxAgeUser2', 'color:yellowgreen', maxAgeUser2);
+
+const maxNameUser = users.toSorted((a, b) => b.name.localeCompare(a.name));
+// console.log('%c ||||| maxNameUser', 'color:yellowgreen', maxNameUser);
+
+////////////////// розвернути масив
+
+const rev = arr.toReversed();
+// console.log('%c ||||| rev', 'color:yellowgreen', rev);
+// const rev2 = arr.reverse();
+// console.log('%c ||||| rev2', 'color:yellowgreen', rev2);
+// console.log('%c ||||| arr', 'color:yellowgreen', arr);
+
+const rev3 = [];
+for (let i = 0; i < arr.length; i++) {
+  // console.log('%c ||||| i', 'color:yellowgreen', i);
+  // console.log('%c ||||| arr[i]', 'color:yellowgreen', arr[i]);
+  rev3.push(arr[arr.length - 1 - i]);
+}
+// console.log('%c ||||| rev3', 'color:yellowgreen', rev3);
+
+const rev4 = [];
+for (let i = arr.length - 1; i >= 0; i--) {
+  rev4.push(arr[i]);
+}
+// console.log('%c ||||| rev4', 'color:yellowgreen', rev4);
+
+const rev5 = arr.map((item, i) => {
+  return arr[arr.length - 1 - i];
+});
+
+// console.log('%c ||||| rev5', 'color:yellowgreen', rev5);
+
+const rev6 = [...arr].map([].pop, arr);
+
+// console.log('%c ||||| rev6', 'color:yellowgreen', rev6);
+
+/////////////// відфільтрувати фолсі значення
+
+const arf = [5, 0, null, undefined, NaN, 'ok', false];
+console.log('%c ||||| arf', 'color:yellowgreen', arf);
+
+const fil = arf.filter(Boolean);
+console.log('%c ||||| fil', 'color:yellowgreen', fil);
+
+const fil2 = [];
+
+for (let index = 0; index < arf.length; index++) {
+  if (arf[index]) fil2.push(arf[index]);
+}
+console.log('%c ||||| fil2', 'color:yellowgreen', fil2);
