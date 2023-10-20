@@ -224,3 +224,9 @@ console.log('%c ||||| finded', 'color:yellowgreen', finded);
 
 console.groupEnd();
 console.log('------------------------------');
+
+Object.prototype.customMethod = function () {
+  console.log("Це новий метод, доданий до всіх об'єктів через prototype.");
+};
+
+Object.customMethod(); // "Це новий метод, доданий до всіх об'єктів через prototype."

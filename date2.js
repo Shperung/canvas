@@ -754,16 +754,6 @@ const allLocales = [
   'zu-ZA',
 ];
 
-const aaaa = {
-  a: 1,
-  b: 2,
-  c: 3,
-};
-
-console.log('%c ||||| aaaa', 'color:yellowgreen', aaaa);
-
-console.table(aaaa);
-
 console.groupCollapsed('base');
 const now = new Date();
 console.log('%c ||||| now', 'color:yellowgreen', now);
@@ -789,16 +779,6 @@ console.log(
 
 console.groupEnd();
 console.log('------------------------------');
-
-///
-///
-///
-///
-///
-///
-///
-///
-///
 
 console.groupCollapsed('toLocaleString');
 
@@ -842,20 +822,9 @@ console.log(
 console.groupEnd();
 console.log('------------------------------');
 
-////
-////
-////
-////
-////
-////
-////
-////
-////
-////
-////
 console.groupCollapsed('getTime');
 
-const getTestTime = new Date('2023-10-03T14:09:44Z');
+const getTestTime = new Date('2023-06-02 09:54:58');
 console.log(
   '%c ||||| 2023-06-02 09:54:58 getTestTime',
   'color:yellowgreen',
@@ -865,21 +834,6 @@ console.log(
 console.log('%c ||||| getTestTime', 'color:yellowgreen', getTestTime.getTime());
 const start = new Date(0);
 console.log('%c ||||| start', 'color:yellowgreen', start);
-
-console.log(
-  '%c ||||| start.toISOString()',
-  'color:yellowgreen',
-  start.toISOString()
-);
-
-const a = new Date('1970-12-13T00:00:00+03:00');
-
-console.log('%c ||||| a', 'color:yellowgreen', a);
-
-const dateNow = Date.now();
-const dateNowString = new Date(dateNow);
-console.log('%c ||||| dateNow', 'color:yellowgreen', dateNow);
-console.log('%c ||||| dateNowString', 'color:yellowgreen', dateNowString);
 
 // зсув в минутах -180 відносно UTC
 console.log(
@@ -908,19 +862,6 @@ console.log(
 
 console.groupEnd();
 console.log('----');
-
-///////////////
-///////////////
-///////////////
-///////////////
-///////////////
-///////////////
-///////////////
-///////////////
-///////////////
-///////////////
-///////////////
-///////////////
 
 console.groupCollapsed('toISOString');
 
@@ -994,19 +935,6 @@ if (isDaylightSavingTime()) {
 console.groupEnd();
 console.log('----');
 
-///////////////
-///////////////
-///////////////
-///////////////
-///////////////
-///////////////
-///////////////
-///////////////
-///////////////
-///////////////
-///////////////
-///////////////
-
 console.groupCollapsed('intl');
 
 const optionsIntl = {
@@ -1029,11 +957,11 @@ console.log(
   new Intl.DateTimeFormat('nl-NL', optionsIntl).format(date1)
 );
 
-// allLocales.forEach((locale) => {
-//   const dateFormatter = new Intl.DateTimeFormat(locale);
-//   const formattedDate = dateFormatter.format(date1);
-//   console.log(`Locale: ${locale}, Formatted Date: ${formattedDate}`);
-// });
+allLocales.forEach((locale) => {
+  const dateFormatter = new Intl.DateTimeFormat(locale);
+  const formattedDate = dateFormatter.format(date1);
+  console.log(`Locale: ${locale}, Formatted Date: ${formattedDate}`);
+});
 
 console.groupEnd();
 console.log('----');
