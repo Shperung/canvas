@@ -127,14 +127,92 @@ const rev6 = [...arr].map([].pop, arr);
 /////////////// відфільтрувати фолсі значення
 
 const arf = [5, 0, null, undefined, NaN, 'ok', false];
-console.log('%c ||||| arf', 'color:yellowgreen', arf);
+// console.log('%c ||||| arf', 'color:yellowgreen', arf);
 
 const fil = arf.filter(Boolean);
-console.log('%c ||||| fil', 'color:yellowgreen', fil);
+// console.log('%c ||||| fil', 'color:yellowgreen', fil);
 
 const fil2 = [];
 
 for (let index = 0; index < arf.length; index++) {
   if (arf[index]) fil2.push(arf[index]);
 }
-console.log('%c ||||| fil2', 'color:yellowgreen', fil2);
+// console.log('%c ||||| fil2', 'color:yellowgreen', fil2);
+
+const words = [
+  'grapefruit',
+  'banana',
+  'orange',
+  'banana',
+  'grapefruit',
+  'banana',
+  'banana',
+  'banana',
+  'grapefruit',
+];
+//// унікальні слова відфільровані по кількості раз які зустрічаються
+
+// const uniques = Array.from(new Set(words));
+const uniques = [...new Set(words)];
+
+const big = uniques.reduce((acc, cur) => {
+  return {...acc, [cur]: words.filter((item) => item === cur).length};
+}, {});
+
+const s = uniques.toSorted((a, b) => big[b] - big[a]);
+// console.log('%c ||||| uniques', 'color:yellowgreen', uniques);
+// console.log('%c ||||| big', 'color:yellowgreen', big);
+// console.log('%c ||||| s', 'color:yellowgreen', s); //[ 'banana', 'grapefruit', 'orange' ]
+
+function getUniqueWords(words) {
+  const wordCount = {};
+
+  words.forEach((word) => {
+    wordCount[word] = (wordCount[word] || 0) + 1;
+  });
+
+  const uniqueWords = Object.keys(wordCount);
+  uniqueWords.sort((a, b) => wordCount[b] - wordCount[a]);
+
+  return uniqueWords;
+}
+
+const uniqueWords = getUniqueWords(words);
+// console.log(uniqueWords);
+
+///////////// функція яка повертає масив аргументів помножених на 2
+
+function m(...arg) {
+  return arg.map((item) => item * 2);
+}
+
+// console.log('%c ||||| m(1, 2, 3)', 'color:yellowgreen', m(1, 2, 3));
+
+////////////////// сума чисел
+
+function sum(p) {
+  return (p2) => p + p2;
+}
+
+const ss = sum(3)(4);
+// console.log('%c ||||| ss', 'color:yellowgreen', ss);
+
+const str = 'DunYw5eMY48';
+function addPlusToLowerCaseChars(str) {
+  const result = str
+    .split('')
+    .map((char) => {
+      if (char !== char.toLowerCase()) {
+        return char + '+';
+      } else {
+        return char;
+      }
+    })
+    .join('');
+
+  return result;
+}
+
+const strPlus = addPlusToLowerCaseChars(str);
+
+console.log('%c ||||| strPlus', 'color:yellowgreen', strPlus);
