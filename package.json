@@ -4,7 +4,8 @@
   "main": "index.js",
   "scripts": {
     "start": "parcel index.html canvas.html base.html new.html --open",
-    "tasks": "nodemon tasks.js"
+    "tasks": "nodemon tasks.js",
+    "palindrome": "nodemon palindrome.js"
   },
   "repository": {
     "type": "git",
